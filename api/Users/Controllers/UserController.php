@@ -4,6 +4,7 @@ namespace Api\Users\Controllers;
 
 use Illuminate\Http\Request;
 use Infrastructure\Http\Controller;
+use Api\Users\Exceptions\TestException;
 use Api\Users\Requests\CreateUserRequest;
 use Api\Users\Services\UserService;
 
@@ -18,22 +19,12 @@ class UserController extends Controller
 
     public function getAll()
     {
-        $resourceOptions = $this->parseResourceOptions();
-
-        $data = $this->userService->getAll($resourceOptions);
-        $parsedData = $this->parseData($data, $resourceOptions, 'users');
-
-        return $this->response($parsedData);
+        throw new \Exception('yolo');
     }
 
     public function getById($userId)
     {
-        $resourceOptions = $this->parseResourceOptions();
-
-        $data = $this->userService->getById($userId, $resourceOptions);
-        $parsedData = $this->parseData($data, $resourceOptions, 'user');
-
-        return $this->response($parsedData);
+        throw new TestException();
     }
 
     public function create(CreateUserRequest $request)
